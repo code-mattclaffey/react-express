@@ -1,0 +1,26 @@
+.sbdocs h1, 
+.sbdocs h2, 
+.sbdocs h3, 
+.sbdocs h4, 
+.sbdocs h5, 
+.sbdocs h6, 
+.sbdocs p {
+    max-width: 100% !important;
+}
+
+.sbdocs ul,
+.sbdocs ol {
+  list-style: reset !important;
+}
+
+.sbdocs pre {
+  margin: 24px 0 !important;
+}
+
+.sbdocs ol a {
+  text-decoration: underline;
+}
+
+.sbdocs ul a {
+  text-decoration: underline;
+}

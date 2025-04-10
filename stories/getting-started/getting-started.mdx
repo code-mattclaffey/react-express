@@ -1,0 +1,41 @@
+import { Meta, Canvas, ArgTypes } from '@storybook/blocks'
+
+<Meta title="Getting Started/Installation" />
+
+# Installation
+
+## React
+
+### Dependencies
+
+Each component will have it's own dependencies where you will have to install that package to make the component work. However, there are a few dependencies that you will need for all of the components which are:
+
+```json
+{
+  "classnames": "*", // Very common util library for making string concatenation friendly
+  "react": "*", // You will already have this installed if you are using react JS
+  "react-dom": "*" // You will already have this installed if you are using react JS
+}
+```
+
+### Importing components
+
+There are two ways you can import the components.
+
+#### Single entry file
+
+```tsx
+import { Component } from '@code-mattclaffey/react-express'
+```
+
+This is when you reference the package name "@britishgassas/react-components". If you are using CommonJS, it will export those whole library. If you are compiling your react code to ES modules then it will treeshake the imports within the bundle. However, it can only treeshake so much so you may end up with code you don't need. If you want to get exactly what you need then you can use multiple entry imports.
+
+#### Multiple entry files
+
+```tsx
+import { Component } from '@code-mattclaffey/react-express/Component'
+```
+
+A multiple entry import is when you can directly import the component that you need. Very simple right? But it does wonders in the bundler side as it makes it easier for the bundler to understand what code it needs regardless to if it's CommonJS or ES Module.
+
+When using this approach you can come into a problem with extra code if you end up using lots of components as the libraries deps get included per component. We do not have this problem as we use peer dependencies so the ownership to install dependencies go to the consumer who wants to use that specific component. This gives the consumer a better performant experience when using the component library.

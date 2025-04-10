@@ -1,0 +1,87 @@
+@use 'sass:map';
+
+$typography_settings: (
+  'heading-one': (
+    font-family: var(--ns-typography-heading-one-font-family),
+    font-weight: var(--ns-typography-heading-one-font-weight),
+    letter-spacing: var(--ns-typography-heading-one-letter-spacing),
+    line-height: var(--ns-typography-heading-one-line-height),
+    breakpoint-small-font-size:
+      var(--ns-typography-heading-one-viewport-small-font-size),
+    breakpoint-small-font-spacer:
+      var(--ns-typography-heading-one-viewport-small-font-size),
+    breakpoint-medium-font-size:
+      var(--ns-typography-heading-one-viewport-medium-font-size),
+    breakpoint-medium-font-spacer:
+      var(--ns-typography-heading-one-viewport-medium-font-size),
+    breakpoint-large-font-size:
+      var(--ns-typography-heading-one-viewport-large-font-size),
+    breakpoint-large-font-spacer:
+      var(--ns-typography-heading-one-viewport-large-font-size),
+  ),
+);
+
+@function getFontSize($typeset, $breakpoint: 'medium') {
+  @if ($breakpoint == 'medium') {
+    @return map.get(
+      map.get($typography_settings, $typeset),
+      'breakpoint-medium-font-size'
+    );
+  }
+
+  @if ($breakpoint == 'large') {
+    @return map.get(
+      map.get($typography_settings, $typeset),
+      'breakpoint-large-font-size'
+    );
+  }
+
+  @return map.get(
+    map.get($typography_settings, $typeset),
+    'breakpoint-small-font-size'
+  );
+}
+
+@mixin getFontWeight($typeset) {
+  font-family: map.get(
+    map.get($typography_settings, $typeset),
+    'font-family'
+  ) !important;
+}
+
+@mixin setTypography($typeset: 'p-normal') {
+  font-family: map.get(
+    map.get($typography_settings, $typeset),
+    'font-family'
+  ) !important;
+  font-weight: map.get(
+    map.get($typography_settings, $typeset),
+    'font-weight'
+  ) !important;
+  letter-spacing: map.get(
+    map.get($typography_settings, $typeset),
+    'letter-spacing'
+  ) !important;
+  line-height: map.get(
+    map.get($typography_settings, $typeset),
+    'line-height'
+  ) !important;
+  font-size: map.get(
+    map.get($typography_settings, $typeset),
+    'breakpoint-small-font-size'
+  ) !important;
+
+  @media screen and (min-width: 720px) {
+    font-size: map.get(
+      map.get($typography_settings, $typeset),
+      'breakpoint-medium-font-size'
+    ) !important;
+  }
+
+  @media screen and (min-width: 1620px) {
+    font-size: map.get(
+      map.get($typography_settings, $typeset),
+      'breakpoint-large-font-size'
+    ) !important;
+  }
+}

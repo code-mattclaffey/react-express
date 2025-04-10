@@ -1,0 +1,5 @@
+dist
+.storybook
+global.d.ts
+vite.config.ts
+.github
